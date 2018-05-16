@@ -13,4 +13,4 @@ Run `npm install` in Blockchain directory
 
 ### Tests
 
-Run `npm tests` in Blockchain directory
+Run `npm test` in Blockchain directory
