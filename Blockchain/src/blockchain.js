@@ -2,26 +2,28 @@ let b = require("./block");
 
 class Blockchain {
   constructor(genesisBlock) {
-    this.blockIndex = 0;
     this.blocks = [];
-    this.addBlock(genesisBlock);
   }
 
-  addBlock(data) {
-    let myBlock = b.createBlock(data, this.blockIndex, this.getPreviousHash());
-    this.blocks.push(myBlock);
-    this.blockIndex++;
+  addBlock(newBlock) {
+    newBlock.index = this.blocks.length;
+    newBlock.previousHash = this.getLatestBlock().hash;
+    newBlock.hash = newBlock.generateHash();
+    this.blocks.push(newBlock);
   }
 
-  getPreviousHash(index) {
-    if (index > 0) {
-      return this.blocks[index - 1].hash;
-    } else return 0;
+  getLatestBlock() {
+    return this.blocks[this.blocks.length - 1];
   }
 }
 
-function initBlockchain(data) {
-  return new Blockchain(b.createBlock(data, 0));
+function initBlockchain() {
+  let chain = new Blockchain();
+  let genesisBlock = b.createBlock("Genesis Block", 0);
+  genesisBlock.index = 0;
+  genesisBlock.hash = genesisBlock.generateHash();
+  chain.blocks.push(genesisBlock);
+  return chain;
 }
 
 module.exports = { initBlockchain, Blockchain };

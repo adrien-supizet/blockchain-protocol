@@ -1,17 +1,13 @@
 const crypto = require("crypto");
 
 class Block {
-  constructor(data, index, previousHash) {
-    this.index = index;
+  constructor(data) {
     this.data = data;
     this.timestamp = Date.now();
-    this.previousHash = previousHash;
-    this.hash = this.generateHash(
-      this.index,
-      this.data,
-      this.timestamp,
-      this.previousHash
-    );
+    // default data, written when block is added
+    this.index = 0;
+    this.previousHash = 0;
+    this.hash = 0;
   }
   get transactions() {
     return this.data;
@@ -25,8 +21,8 @@ class Block {
   }
 }
 
-function createBlock(data, index) {
-  return new Block(data, index);
+function createBlock(data) {
+  return new Block(data);
 }
 
 module.exports = {

@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/adrien-supizet/blockchain-protocol#readme",
   "dependencies": {
+    "crypto-js": "^3.1.9-1",
     "hapi": "^17.4.0",
     "jasmine-node": "^1.14.5"
   }
