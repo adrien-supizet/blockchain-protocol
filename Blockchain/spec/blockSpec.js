@@ -26,6 +26,7 @@ describe("Class Blockchain", () => {
       myChain = Chain.initBlockchain();
     });
     it("should get block index", () => {
+      console.log("Mining difficulty: " + myChain.miningDifficulty);
       assert.equal(myChain.blocks.length, 1);
       myChain.addBlock(Block.createBlock("Block #1"));
       assert.equal(myChain.blocks[1].index, 1);
