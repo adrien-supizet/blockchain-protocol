@@ -3,13 +3,13 @@ let Chain = require("../src/blockchain");
 let assert = require("assert");
 
 describe("Class Block", () => {
-  describe("Init block", () => {
+  describe("Init", () => {
     var myBlock;
     beforeEach(function() {
       myBlock = Block.createBlock("data");
     });
     it("should create a block", () => {
-      assert.notEqual(myBlock, undefined);
+      assert.equal(myBlock.transactions, "data");
     });
     it("should get the block and read data", () => {
       assert.equal(myBlock.transactions, "data");
@@ -18,7 +18,9 @@ describe("Class Block", () => {
       assert.notEqual(myBlock.timestamp, NaN);
     });
   });
-  describe("Init blockchain", () => {
+});
+describe("Class Blockchain", () => {
+  describe("Init", () => {
     var myChain;
     beforeEach(function() {
       myChain = Chain.initBlockchain();
@@ -34,8 +36,33 @@ describe("Class Block", () => {
     });
     it("should get block previous hash", () => {
       myChain.addBlock(Block.createBlock("Block #1"));
-      console.log(myChain);
       assert.equal(myChain.blocks[1].previousHash, myChain.blocks[0].hash);
+    });
+  });
+
+  describe("Check Integrity", () => {
+    var myChain;
+    beforeEach(function() {
+      myChain = Chain.initBlockchain();
+      myChain.addBlock(Block.createBlock("Block #1"));
+      myChain.addBlock(Block.createBlock("Block #2"));
+      myChain.addBlock(Block.createBlock("Block #3"));
+      myChain.addBlock(Block.createBlock("Block #4"));
+    });
+    it("should have matching hashes", () => {
+      assert.equal(myChain.isValid(), true);
+    });
+    it("should NOT have matching stored and calculated hashes", () => {
+      myChain.blocks[1].data = "Altered data";
+      assert.notEqual(myChain.blocks[1].hash, myChain.blocks[1].generateHash());
+      assert.equal(myChain.isValid(), false);
+    });
+    it("should NOT have matching hashes and previous hashes", () => {
+      let oldHash = myChain.blocks[2].hash;
+      myChain.blocks[2].data = "Altered data";
+      myChain.blocks[2].hash = myChain.blocks[2].generateHash();
+      assert.notEqual(oldHash, myChain.blocks[2].hash);
+      assert.equal(myChain.isValid(), false);
     });
   });
 });

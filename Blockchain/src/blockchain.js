@@ -15,6 +15,22 @@ class Blockchain {
   getLatestBlock() {
     return this.blocks[this.blocks.length - 1];
   }
+
+  isValid() {
+    for (let i = 1; i < this.blocks.length - 1; i++) {
+      let previousBlock = this.blocks[i - 1];
+      let currentBlock = this.blocks[i];
+
+      if (currentBlock.previousHash != previousBlock.hash) {
+        return false;
+      }
+
+      if (currentBlock.generateHash() != currentBlock.hash) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 function initBlockchain() {
