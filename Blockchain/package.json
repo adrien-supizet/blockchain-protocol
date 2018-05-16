@@ -1,0 +1,29 @@
+{
+  "name": "blockchain-protocol",
+  "version": "0.0.0",
+  "description": "Blockchain data structure and network",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jasmine-node spec/ --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrien-supizet/blockchain-protocol.git"
+  },
+  "keywords": [
+    "Blockchain",
+    "Javascript",
+    "Node"
+  ],
+  "author": "adrien-supizet & guilngou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adrien-supizet/blockchain-protocol/issues"
+  },
+  "homepage": "https://github.com/adrien-supizet/blockchain-protocol#readme",
+  "dependencies": {
+    "hapi": "^17.4.0",
+    "jasmine-node": "^1.14.5"
+  }
+}
