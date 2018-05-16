@@ -3,12 +3,13 @@ let b = require("./block");
 class Blockchain {
   constructor(genesisBlock) {
     this.blocks = [];
+    this.miningDifficulty = 3;
   }
 
   addBlock(newBlock) {
     newBlock.index = this.blocks.length;
     newBlock.previousHash = this.getLatestBlock().hash;
-    newBlock.hash = newBlock.generateHash();
+    newBlock.hash = newBlock.mineBlock(this.miningDifficulty);
     this.blocks.push(newBlock);
   }
 
