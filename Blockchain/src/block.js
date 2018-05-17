@@ -5,14 +5,13 @@ class Block {
     this.data = data;
     this.timestamp = Date.now();
     // default data, written when block is added
-    this.index = 0;
     this.previousHash = 0;
     this.hash = 0;
     // random data for mining
     this.nonce = 0;
   }
   get transactions() {
-    return this.data;
+    return JSON.stringify(this.data);
   }
 
   generateHash() {
@@ -31,12 +30,7 @@ class Block {
       hash = this.generateHash();
     } while (hash.substring(0, difficulty) !== Array(difficulty + 1).join("0"));
     console.log(
-      "Block #" +
-        this.index +
-        " mined after " +
-        this.nonce +
-        " iterations with hash: " +
-        hash
+      "Block mined after " + this.nonce + " iteration with hash: " + hash
     );
     return hash;
   }
