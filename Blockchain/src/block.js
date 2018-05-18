@@ -14,6 +14,10 @@ class Block {
     return JSON.stringify(this.data);
   }
 
+  get info() {
+    return "Timestamp: " + this.timestamp + "  -  Hash: " + this.hash;
+  }
+
   generateHash() {
     return crypto
       .createHash("sha256")

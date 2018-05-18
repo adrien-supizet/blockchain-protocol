@@ -7,15 +7,12 @@ const request = require("request");
 
 describe("Class Block", () => {
   describe("Init", () => {
-    var myBlock;
+    let myBlock;
     beforeEach(function() {
       myBlock = Block.createBlock("data");
     });
-    it("should create a block", () => {
-      assert.equal(myBlock.transactions, "data");
-    });
     it("should get the block and read data", () => {
-      assert.equal(myBlock.transactions, "data");
+      assert.equal(myBlock.data, "data");
     });
     it("should get block timestamp", () => {
       assert.notEqual(myBlock.timestamp, NaN);
@@ -24,7 +21,7 @@ describe("Class Block", () => {
 });
 describe("Class Transaction", () => {
   describe("Init", () => {
-    var myTransaction;
+    let myTransaction;
     beforeEach(function() {
       myTransaction = Transaction.create("A", "B", 10);
     });
@@ -37,14 +34,14 @@ describe("Class Transaction", () => {
 });
 describe("Class Blockchain", () => {
   describe("Init", () => {
-    var myChain;
+    let myChain;
     beforeEach(function() {
       myChain = Chain.initBlockchain();
     });
     it("should get block index", () => {
       console.log("Mining difficulty: " + myChain.miningDifficulty);
       assert.equal(myChain.blocks.length, 1);
-      myChain.minePendingTransaction();
+      myChain.minePendingTransaction("Miner");
       assert.equal(myChain.blocks.length, 2);
     });
     it("should get block hash", () => {
@@ -54,16 +51,46 @@ describe("Class Blockchain", () => {
       myChain.minePendingTransaction();
       assert.equal(myChain.blocks[1].previousHash, myChain.blocks[0].hash);
     });
+    it("should mine a transaction", () => {
+      myChain.addTransaction(Transaction.create("Alex", "Adrien", 5));
+      myChain.minePendingTransaction("Test");
+      const trans = myChain.getLatestBlock().data.slice(-1)[0];
+      assert.equal(trans.amount, 5);
+      assert.equal(trans.from, "Alex");
+      assert.equal(trans.to, "Adrien");
+    });
+    it("should read transactions", () => {
+      myChain.minePendingTransaction("Miner");
+      myChain.addTransaction(Transaction.create("Alex", "Adrien", 25));
+      myChain.addTransaction(Transaction.create("Adrien", "Alex", 10));
+      myChain.minePendingTransaction("Miner");
+      assert.equal(myChain.getLatestBlock().data.length, 3);
+    });
+    it("should give mining reward", () => {
+      myChain.minePendingTransaction("Test");
+      myChain.minePendingTransaction("Test");
+      assert.equal(myChain.getBalance("Test"), 10);
+    });
+    it("should get a block", done => {
+      let resp;
+      request.get(hostURI + "/block/1", (error, response, body) => {
+        resp = response.statusCode;
+        console.log(body);
+        expect(resp).toBe(200);
+        expect(body).toBeTruthy();
+        done();
+      });
+    });
   });
 
   describe("Check Integrity", () => {
-    var myChain;
+    let myChain;
     beforeEach(function() {
       myChain = Chain.initBlockchain();
-      myChain.minePendingTransaction();
-      myChain.minePendingTransaction();
-      myChain.minePendingTransaction();
-      myChain.minePendingTransaction();
+      myChain.minePendingTransaction("Miner");
+      myChain.minePendingTransaction("Miner");
+      myChain.minePendingTransaction("Miner");
+      myChain.minePendingTransaction("Miner");
     });
     it("should have matching hashes", () => {
       assert.equal(myChain.isValid(), true);
@@ -79,20 +106,19 @@ describe("Class Blockchain", () => {
       myChain.blocks[2].hash = myChain.blocks[2].generateHash();
       assert.notEqual(oldHash, myChain.blocks[2].hash);
       assert.equal(myChain.isValid(), false);
-      console.log(myChain.blocks[3].transactions);
     });
   });
 });
 
 describe("Nodes", () => {
-  var myChain;
+  let myChain;
   beforeEach(function() {
     myChain = Chain.initBlockchain();
-    myChain.minePendingTransaction();
-    myChain.minePendingTransaction();
+    myChain.minePendingTransaction("Miner");
+    myChain.minePendingTransaction("Miner");
   });
   it("should create a node", done => {
-    var resp;
+    let resp;
     request.get(hostURI + "/node", (error, response, body) => {
       resp = response.statusCode;
       expect(resp).toBe(200);
