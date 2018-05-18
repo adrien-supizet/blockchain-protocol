@@ -52,7 +52,7 @@ describe("Class Blockchain", () => {
       assert.equal(myChain.blocks[1].previousHash, myChain.blocks[0].hash);
     });
     it("should mine a transaction", () => {
-      myChain.addTransaction(Transaction.create("Alex", "Adrien", 5));
+      myChain.addTransaction("Alex", "Adrien", 5);
       myChain.minePendingTransaction("Test");
       const trans = myChain.getLatestBlock().data.slice(-1)[0];
       assert.equal(trans.amount, 5);
@@ -61,25 +61,15 @@ describe("Class Blockchain", () => {
     });
     it("should read transactions", () => {
       myChain.minePendingTransaction("Miner");
-      myChain.addTransaction(Transaction.create("Alex", "Adrien", 25));
-      myChain.addTransaction(Transaction.create("Adrien", "Alex", 10));
+      myChain.addTransaction("Alex", "Adrien", 25);
+      myChain.addTransaction("Adrien", "Alex", 10);
       myChain.minePendingTransaction("Miner");
       assert.equal(myChain.getLatestBlock().data.length, 3);
     });
     it("should give mining reward", () => {
       myChain.minePendingTransaction("Test");
       myChain.minePendingTransaction("Test");
-      assert.equal(myChain.getBalance("Test"), 10);
-    });
-    it("should get a block", done => {
-      let resp;
-      request.get(hostURI + "/block/1", (error, response, body) => {
-        resp = response.statusCode;
-        console.log(body);
-        expect(resp).toBe(200);
-        expect(body).toBeTruthy();
-        done();
-      });
+      assert.equal(myChain.getBalance("Test"), myChain.miningReward);
     });
   });
 
@@ -123,6 +113,15 @@ describe("Nodes", () => {
       resp = response.statusCode;
       expect(resp).toBe(200);
       expect(body).toBeTruthy();
+      done();
+    });
+  });
+  it("should get node's first block", done => {
+    let resp;
+    request.get(hostURI + "/block/0", (error, response, body) => {
+      resp = response.statusCode;
+      expect(resp).toBe(200);
+      expect(JSON.parse(body).data).toBe("Genesis Block");
       done();
     });
   });

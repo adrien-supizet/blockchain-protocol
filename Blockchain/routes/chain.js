@@ -1,6 +1,5 @@
 const { hostPort } = require("../config/config");
-const s = require("../server");
-console.log(s);
+const { chain } = require("../src/blockchain");
 module.exports = [
   {
     method: "GET",
@@ -13,7 +12,8 @@ module.exports = [
     method: "GET",
     path: "/block/{index}",
     handler: function(request, h) {
-      return serv.getBlockchain();
+      console.log(chain.blocks[request.params.index]);
+      return chain.blocks[request.params.index];
     }
   },
   {

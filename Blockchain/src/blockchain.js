@@ -5,8 +5,9 @@ class Blockchain {
   constructor(genesisBlock) {
     this.blocks = [];
     this.pendingTransactions = [];
-    this.miningDifficulty = 2;
-    this.miningReward = 10;
+    this.miningDifficulty = 3;
+    this.miningReward = 1;
+    this.circulatingSupply = 0;
   }
 
   minePendingTransaction(rewardAddress) {
@@ -18,10 +19,11 @@ class Blockchain {
     this.pendingTransactions = [
       Transaction.create(null, rewardAddress, this.miningReward)
     ];
+    this.circulatingSupply += this.miningReward;
   }
 
-  addTransaction(transaction) {
-    this.pendingTransactions.push(transaction);
+  addTransaction(from, to, amount) {
+    this.pendingTransactions.push(Transaction.create(from, to, amount));
   }
   getLatestBlock() {
     return this.blocks[this.blocks.length - 1];
@@ -65,4 +67,6 @@ function initBlockchain() {
   return chain;
 }
 
-module.exports = { initBlockchain };
+let chain = initBlockchain();
+
+module.exports = { chain, initBlockchain };

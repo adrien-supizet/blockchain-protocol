@@ -11,7 +11,11 @@
     "type": "git",
     "url": "git+https://github.com/adrien-supizet/blockchain-protocol.git"
   },
-  "keywords": ["Blockchain", "Javascript", "Node"],
+  "keywords": [
+    "Blockchain",
+    "Javascript",
+    "Node"
+  ],
   "author": "adrien-supizet & guilngou",
   "license": "ISC",
   "bugs": {
