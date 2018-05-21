@@ -1,5 +1,5 @@
-let { myBlockchain } = require("../server");
-const { totalSupply } = require("../config/coin");
+let { myBlockchain } = require("./server");
+const { totalSupply } = require("./config/coin");
 let circulatingSupply = 0;
 
 setInterval(function() {
