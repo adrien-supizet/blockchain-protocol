@@ -2,7 +2,7 @@
 
 Creation -from scratch- of a blockchain storing transactions in Javascript.
 
-###4 Requirements
+#### Requirements
 
 * nodejs 8.0+
 * npm 5.8+
