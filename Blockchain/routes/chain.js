@@ -1,6 +1,6 @@
 const { hostPort } = require("../config/config");
-const { chain } = require("../src/blockchain");
-module.exports = [
+let { myBlockchain } = require("../src/blockchain");
+exports = module.exports = [
   {
     method: "GET",
     path: "/node",
@@ -12,21 +12,30 @@ module.exports = [
     method: "GET",
     path: "/block/{index}",
     handler: function(request, h) {
-      console.log(chain.blocks[request.params.index]);
-      return chain.blocks[request.params.index];
+      return myBlockchain.blocks[request.params.index];
     }
   },
   {
     method: "GET",
-    path: "/chain/{page}",
+    path: "/balance/{address}",
     handler: function(request, h) {
-      return request.params.index;
+      return myBlockchain.getBalance(request.params.address);
     }
   },
+  /*{
+    method: "GET",
+    path: "/chain/{page}",
+    handler: function(request, h) {
+      return request.params.page;
+    }
+  },*/
   {
     method: "POST",
     path: "/transaction",
     handler: function(request, h) {
+      const data = request.payload;
+      console.log(data);
+      myBlockchain.addTransaction(data.from, data.to, data.amount);
       return "";
     }
   }

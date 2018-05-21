@@ -34,7 +34,13 @@ class Block {
       hash = this.generateHash();
     } while (hash.substring(0, difficulty) !== Array(difficulty + 1).join("0"));
     console.log(
-      "Block mined after " + this.nonce + " iteration with hash: " + hash
+      "Block mined after " +
+        this.nonce +
+        " iteration with hash: " +
+        hash +
+        " containing: " +
+        this.data.length +
+        " transactions."
     );
     return hash;
   }
