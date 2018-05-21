@@ -4,18 +4,14 @@
   "description": "Blockchain data structure and network",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node main.js",
     "test": "jasmine-node spec/blockSpec.js --verbose"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adrien-supizet/blockchain-protocol.git"
   },
-  "keywords": [
-    "Blockchain",
-    "Javascript",
-    "Node"
-  ],
+  "keywords": ["Blockchain", "Javascript", "Node"],
   "author": "adrien-supizet & guilngou",
   "license": "ISC",
   "bugs": {
