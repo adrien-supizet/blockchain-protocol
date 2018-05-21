@@ -29,7 +29,14 @@ class Blockchain {
   }
 
   addTransaction(from, to, amount) {
-    this.pendingTransactions.push(Transaction.create(from, to, amount));
+    /* To be Implemented with Wallet APP
+    if (!this.areAddressesValid()) {
+      return false;
+    }*/
+    let trans = Transaction.create(from, to, amount);
+    if (Transaction.verify(trans, this.getBalance(from)) || from === null) {
+      this.pendingTransactions.push(trans);
+    }
   }
   getLatestBlock() {
     return this.blocks[this.blocks.length - 1];
@@ -48,6 +55,8 @@ class Blockchain {
     }
     return true;
   }
+  //To be Implemented with Wallet APP
+  //areAddressesValid(from, to) {}
 
   getBalance(address) {
     let balance = 0;

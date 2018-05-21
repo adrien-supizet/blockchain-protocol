@@ -54,8 +54,10 @@ describe("Class Blockchain", () => {
       assert.equal(myChain.blocks[1].previousHash, myChain.blocks[0].hash);
     });
     it("should mine a transaction", () => {
+      myChain.addTransaction(null, "Alex", 5);
       myChain.addTransaction("Alex", "Adrien", 5);
       myChain.minePendingTransaction("TestMineTransaction");
+      console.log(myChain.getLatestBlock().data);
       const trans = myChain.getLatestBlock().data.slice(-1)[0];
       assert.equal(trans.amount, 5);
       assert.equal(trans.from, "Alex");
@@ -69,12 +71,9 @@ describe("Class Blockchain", () => {
       assert.equal(myChain.getLatestBlock().data.length, 3);
     });
     it("should give mining reward", () => {
-      myChain.minePendingTransaction("TestMiningReward");
-      myChain.minePendingTransaction("TestMiningReward");
-      assert.equal(
-        myChain.getBalance("TestMiningReward"),
-        myChain.miningReward
-      );
+      myChain.minePendingTransaction("TestReward");
+      myChain.minePendingTransaction("TestReward");
+      assert.equal(myChain.getBalance("TestReward"), myChain.miningReward);
     });
   });
 
@@ -82,7 +81,6 @@ describe("Class Blockchain", () => {
     let myChain;
     beforeEach(function() {
       myChain = new blockchain.Blockchain();
-      console.log(myChain.blocks[0].hash);
       myChain.miningDifficulty = difficulty;
       myChain.minePendingTransaction("Miner");
       myChain.minePendingTransaction("Miner");
@@ -113,10 +111,8 @@ describe("Class Blockchain", () => {
     beforeEach(function() {
       myChain = new blockchain.Blockchain();
       myChain.miningDifficulty = difficulty;
-      console.log(myChain.blocks[0].hash);
     });
     it("should get block index", () => {
-      console.log(myChain.blocks.length);
       assert.equal(myChain.blocks.length, 1);
       myChain.minePendingTransaction("Miner");
       assert.equal(myChain.blocks.length, 2);
