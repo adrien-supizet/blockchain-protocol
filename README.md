@@ -1,16 +1,32 @@
-# blockchain-protocol
+# Blockchain development
 
 Creation -from scratch- of a blockchain storing transactions in Javascript.
 
-### Requirements
+###4 Requirements
 
 * nodejs 8.0+
 * npm 5.8+
 
-### Setup
+## Blockchain
+
+Work in progress
+
+#### Setup
 
 Run `npm install` in Blockchain directory
 
-### Tests
+#### Run
+
+Run `npm start` in Blockchain directory
+
+#### Tests
 
 Run `npm test` in Blockchain directory
+
+## Wallet app
+
+Coming soon!
+
+## Blockchain explorer
+
+Coming soon!
