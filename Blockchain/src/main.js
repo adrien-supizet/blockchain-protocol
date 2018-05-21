@@ -1,10 +1,12 @@
-let { chain } = require("./blockchain");
+let { myBlockchain } = require("../server");
 const { totalSupply } = require("../config/coin");
 let circulatingSupply = 0;
 
-while (chain.circulatingSupply < totalSupply) {
-  chain.minePendingTransaction("Adrien");
-  console.log("circulatingSupply: " + chain.circulatingSupply);
-}
-console.log("totalSupply reached.");
-console.log("balance Adrien: " + chain.getBalance("Adrien"));
+setInterval(function() {
+  if (myBlockchain.circulatingSupply < totalSupply) {
+    myBlockchain.minePendingTransaction("Adrien");
+    console.log("Adrien: " + myBlockchain.getBalance("Adrien"));
+  } else {
+    //console.log("totalSupply reached.");
+  }
+}, 0);

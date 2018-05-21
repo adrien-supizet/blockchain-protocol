@@ -1,18 +1,24 @@
 let Block = require("./block");
 let Transaction = require("./transaction");
 
+let myBlockchain;
+
 class Blockchain {
-  constructor(genesisBlock) {
+  constructor() {
     this.blocks = [];
     this.pendingTransactions = [];
     this.miningDifficulty = 3;
     this.miningReward = 1;
     this.circulatingSupply = 0;
+    let genesisBlock = Block.createBlock("Genesis Block");
+    genesisBlock.hash = genesisBlock.generateHash();
+    this.blocks.push(genesisBlock);
   }
 
   minePendingTransaction(rewardAddress) {
     let newBlock = Block.createBlock(this.pendingTransactions);
     newBlock.previousHash = this.getLatestBlock().hash;
+    console.log("Transactions to mine: " + this.pendingTransactions.length);
     newBlock.data = this.pendingTransactions;
     newBlock.hash = newBlock.mineBlock(this.miningDifficulty);
     this.blocks.push(newBlock);
@@ -61,12 +67,14 @@ class Blockchain {
 
 function initBlockchain() {
   let chain = new Blockchain();
-  let genesisBlock = Block.createBlock("Genesis Block");
-  genesisBlock.hash = genesisBlock.generateHash();
-  chain.blocks.push(genesisBlock);
+  // Specify custom Genesis block here
   return chain;
 }
 
-let chain = initBlockchain();
+if (!myBlockchain) {
+  myBlockchain = new Blockchain();
+}
 
-module.exports = { chain, initBlockchain };
+exports.myBlockchain = myBlockchain;
+exports.Blockchain = Blockchain;
+exports.initBlockchain = initBlockchain();

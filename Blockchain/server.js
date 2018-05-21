@@ -2,8 +2,8 @@
 
 const Hapi = require("hapi");
 const routes = require("./routes");
-const Blockchain = require("./src/blockchain");
 const request = require("request");
+let { myBlockchain } = require("./src/blockchain");
 
 const { hostName, hostPort } = require("./config/config");
 
@@ -27,4 +27,4 @@ async function start() {
 }
 
 start();
-module.exports = server;
+exports.myBlockchain = myBlockchain;
