@@ -26,5 +26,5 @@ async function start() {
   console.log("Server running at:", server.info.uri);
 }
 
-start();
 exports.myBlockchain = myBlockchain;
+exports.initServer = start;
