@@ -4,7 +4,8 @@ let circulatingSupply = 0;
 
 setInterval(function() {
   if (myBlockchain.circulatingSupply < totalSupply) {
-    myBlockchain.minePendingTransaction("Adrien");
+    myBlockchain.minePendingTransaction("Miner");
+    console.log("circulatingSupply: " + myBlockchain.circulatingSupply);
     console.log("Adrien: " + myBlockchain.getBalance("Adrien"));
   } else {
     //console.log("totalSupply reached.");

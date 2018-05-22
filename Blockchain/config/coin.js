@@ -1,4 +1,4 @@
 const coin = {
-  totalSupply: 20
+  totalSupply: 100
 };
 module.exports = coin;
