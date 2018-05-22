@@ -34,9 +34,8 @@ exports = module.exports = [
     path: "/transaction",
     handler: function(request, h) {
       const data = request.payload;
-      if (myBlockchain.addTransaction(data.from, data.to, data.amount)) {
-        console.log(data);
-      }
+      console.log(data);
+      myBlockchain.addTransaction(data.from, data.to, data.amount);
       return "";
     }
   }

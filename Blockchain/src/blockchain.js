@@ -33,7 +33,11 @@ class Blockchain {
       return false;
     }*/
     let trans = Transaction.create(from, to, amount);
-    if (Transaction.verify(trans, this.getBalance(from)) || from === null) {
+    console.log(Transaction.verify(trans.amount, this.getBalance(from)));
+    if (
+      Transaction.verify(trans.amount, this.getBalance(from)) ||
+      from === null
+    ) {
       this.pendingTransactions.push(trans);
     }
   }

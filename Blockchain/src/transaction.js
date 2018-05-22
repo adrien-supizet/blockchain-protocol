@@ -10,10 +10,10 @@ function create(from, to, amount) {
   return new Transaction(from, to, amount);
 }
 
-function verify(transaction, fromBalance) {
-  if (transaction.amount <= fromBalance && transaction.amount > 0) {
-    return false;
-  } else return true;
+function verify(amount, fromBalance) {
+  if (amount <= fromBalance && amount > 0) {
+    return true;
+  } else return false;
 }
 
 module.exports = { create, verify };
