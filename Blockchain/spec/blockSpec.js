@@ -5,7 +5,7 @@ const { hostURI } = require("../config/config");
 let assert = require("assert");
 const request = require("request");
 const http = require("http");
-const difficulty = 1;
+const difficulty = 0;
 
 describe("Class Block", () => {
   describe("Init", () => {

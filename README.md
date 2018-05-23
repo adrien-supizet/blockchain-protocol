@@ -30,3 +30,5 @@ Coming soon!
 ## Blockchain explorer
 
 Coming soon!
+
+@Author: Adrien Supizet
