@@ -1,5 +1,5 @@
-let Block = require("./block");
-let Transaction = require("./transaction");
+const Block = require("./block");
+const Transaction = require("./transaction");
 
 let myBlockchain;
 
@@ -10,13 +10,13 @@ class Blockchain {
     this.miningDifficulty = 3;
     this.miningReward = 1;
     this.circulatingSupply = 0;
-    let genesisBlock = Block.createBlock("Genesis Block");
+    const genesisBlock = Block.createBlock("Genesis Block");
     genesisBlock.hash = genesisBlock.generateHash();
     this.blocks.push(genesisBlock);
   }
 
   minePendingTransaction(rewardAddress) {
-    let newBlock = Block.createBlock(this.pendingTransactions);
+    const newBlock = Block.createBlock(this.pendingTransactions);
     newBlock.previousHash = this.getLatestBlock().hash;
     newBlock.data = this.pendingTransactions;
     newBlock.hash = newBlock.mineBlock(this.miningDifficulty);
@@ -28,17 +28,11 @@ class Blockchain {
   }
 
   addTransaction(from, to, amount) {
-    /* To be Implemented with Wallet APP
-    if (!this.areAddressesValid()) {
-      return false;
-    }*/
-    let trans = Transaction.create(from, to, amount);
-    console.log(Transaction.verify(trans.amount, this.getBalance(from)));
-    if (
-      Transaction.verify(trans.amount, this.getBalance(from)) ||
-      from === null
-    ) {
+    const trans = Transaction.create(from, to, amount);
+    if (trans.verify(this.getBalance(from))) {
       this.pendingTransactions.push(trans);
+    } else {
+      console.log("Abort ", trans);
     }
   }
   getLatestBlock() {
@@ -47,8 +41,8 @@ class Blockchain {
 
   isValid() {
     for (let i = 1; i < this.blocks.length - 1; i++) {
-      let previousBlock = this.blocks[i - 1];
-      let currentBlock = this.blocks[i];
+      const previousBlock = this.blocks[i - 1];
+      const currentBlock = this.blocks[i];
       if (currentBlock.previousHash != previousBlock.hash) {
         return false;
       }
@@ -63,6 +57,9 @@ class Blockchain {
 
   getBalance(address) {
     let balance = 0;
+    if (address === null) {
+      return 1000;
+    }
     for (const b of this.blocks) {
       for (const trans of b.data) {
         if (trans.from === address) {

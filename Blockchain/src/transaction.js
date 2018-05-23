@@ -4,16 +4,21 @@ class Transaction {
     this.to = to;
     this.amount = amount;
   }
+
+  verify(fromBalance) {
+    if (this.amount > 0) {
+      if (this.from === null) {
+        return true;
+      } else if (this.amount <= fromBalance) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 function create(from, to, amount) {
   return new Transaction(from, to, amount);
 }
 
-function verify(amount, fromBalance) {
-  if (amount <= fromBalance && amount > 0) {
-    return true;
-  } else return false;
-}
-
-module.exports = { create, verify };
+module.exports = { create };

@@ -50,25 +50,29 @@ describe("Class Blockchain", () => {
       assert.equal(myChain.blocks[0].hash.length, 44); // hash sha256 -> 44 characters
     });
     it("should get block previous hash", () => {
-      myChain.minePendingTransaction();
+      myChain.minePendingTransaction("Miner");
       assert.equal(myChain.blocks[1].previousHash, myChain.blocks[0].hash);
     });
     it("should mine a transaction", () => {
-      myChain.addTransaction(null, "Alex", 5);
+      myChain.addTransaction(null, "Alex", 10);
+      myChain.minePendingTransaction("Miner");
       myChain.addTransaction("Alex", "Adrien", 5);
       myChain.minePendingTransaction("TestMineTransaction");
-      console.log(myChain.getLatestBlock().data);
       const trans = myChain.getLatestBlock().data.slice(-1)[0];
       assert.equal(trans.amount, 5);
+      assert.equal(myChain.getLatestBlock().data.length, 2);
       assert.equal(trans.from, "Alex");
       assert.equal(trans.to, "Adrien");
     });
     it("should read transactions", () => {
       myChain.minePendingTransaction("Miner");
+      myChain.addTransaction(null, "Alex", 30);
+      myChain.minePendingTransaction("Miner");
       myChain.addTransaction("Alex", "Adrien", 25);
+      myChain.minePendingTransaction("Miner");
       myChain.addTransaction("Adrien", "Alex", 10);
       myChain.minePendingTransaction("Miner");
-      assert.equal(myChain.getLatestBlock().data.length, 3);
+      assert.equal(myChain.getLatestBlock().data.length, 2);
     });
     it("should give mining reward", () => {
       myChain.minePendingTransaction("TestReward");
@@ -125,6 +129,8 @@ describe("Class Blockchain", () => {
       assert.equal(myChain.blocks[1].previousHash, myChain.blocks[0].hash);
     });
     it("should mine a transaction", () => {
+      myChain.addTransaction(null, "Alex", 5);
+      myChain.minePendingTransaction("Miner");
       myChain.addTransaction("Alex", "Adrien", 5);
       myChain.minePendingTransaction("Test");
       const trans = myChain.getLatestBlock().data.slice(-1)[0];
@@ -133,11 +139,17 @@ describe("Class Blockchain", () => {
       assert.equal(trans.to, "Adrien");
     });
     it("should read transactions", () => {
+      myChain.addTransaction(null, "Test", 20);
+
       myChain.minePendingTransaction("Miner");
-      myChain.addTransaction("Alex", "Adrien", 25);
-      myChain.addTransaction("Adrien", "Alex", 10);
+      myChain.addTransaction("Test", "Adrien", 5);
+      myChain.addTransaction("Test", "Adrien", 10);
+      myChain.addTransaction("Test", "Adrien", 5);
       myChain.minePendingTransaction("Miner");
-      assert.equal(myChain.getLatestBlock().data.length, 3);
+      assert.equal(myChain.getLatestBlock().data.length, 4);
+      myChain.addTransaction("Test", "Adrien", 5);
+      myChain.minePendingTransaction("Miner");
+      assert.equal(myChain.getLatestBlock().data.length, 1);
     });
     it("should give mining reward", () => {
       myChain.minePendingTransaction("TestGivingRew");
