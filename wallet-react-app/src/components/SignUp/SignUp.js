@@ -1,6 +1,6 @@
 import React from "react";
 import "./SignUp.css";
-import logo from "../../resources/logo.svg";
+import logo from "../../resources/images/logo.svg";
 import CreateAccount from "../CreateAccount";
 
 class SignUp extends React.Component {
@@ -12,13 +12,16 @@ class SignUp extends React.Component {
           <h1 className="title">Wallet app </h1>
         </header>
         <div className="description">
+          <div> {this.props.value}</div>
+
           <h2 className="headline">
             Make instant transactions to anyone in the world.
           </h2>
-          <h2> Send and receive [coin_name] Coin using this wallet.</h2>
+          <h2> Send and receive [coin_name] Coin using this app.</h2>
           <p className="intro">
             [coin_name] was created from scratch, on top of my own blockchain.
           </p>
+          <p>There are already {this.props.users} users. Join the community.</p>
         </div>
         <CreateAccount className="signUp" />
         <footer className="footer">

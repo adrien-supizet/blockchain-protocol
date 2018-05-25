@@ -1,37 +1,47 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import CreateAccount from "./components/CreateAccount";
+import SignUp from "./components/SignUp";
+
+/*When deploying Firebase apps to production, it is advisable to only import
+the individual SDK components you intend to use.
+For the module builds, these are available in the following manner
+(replace <PACKAGE> with the name of a component - i.e. auth, database, etc):
+const firebase = require("firebase/app");
+require("firebase/<PACKAGE>");*/
+const firebase = require("firebase");
+
+const config = {
+  apiKey: "<AIzaSyBszhz3hM6tvzlPVw17J1g4NILJg9FLZsk>",
+  authDomain: "blockchain-354c8.firebaseapp.com",
+  databaseURL: "https://blockchain-354c8.firebaseio.com",
+  projectId: "blockchain-354c8",
+  storageBucket: "blockchain-354c8.appspot.com",
+  messagingSenderId: "831335941029"
+};
+firebase.initializeApp(config);
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      users: 0
+    };
+  }
+
+  componentDidMount() {
+    const rootRef = firebase
+      .database()
+      .ref()
+      .child("react");
+    const UsersRef = rootRef.child("users");
+    UsersRef.on("value", snapshot => {
+      this.setState({
+        users: snapshot.val()
+      });
+    });
+  }
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Wallet app </h1>
-        </header>
-        <div className="App-description">
-          <h2 className="App-headline">
-            Make instant transactions to anyone in the world.
-          </h2>
-          <h2> Send and receive [coin_name] Coin using this wallet.</h2>
-          <p className="App-intro">
-            [coin_name] was created from scratch, on top of my own blockchain.
-          </p>
-        </div>
-        <CreateAccount />
-        <footer className="App-footer">
-          Author:{" "}
-          <a href="https://github.com/adrien-supizet/">Adrien Supizet</a> Check
-          out the
-          <a href="https://github.com/adrien-supizet/blockchain-protocol">
-            Github project
-          </a>
-          and the <a>Blockchain explorer</a> (Coming soon!)
-        </footer>
-      </div>
-    );
+    return <SignUp users={this.state.users} />;
   }
 }
 
