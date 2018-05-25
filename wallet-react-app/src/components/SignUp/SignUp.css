@@ -1,0 +1,89 @@
+html {
+  min-height: 100%; /* make sure it is at least as tall as the viewport */
+  position: relative;
+}
+body {
+  height: 100%; /* force the BODY element to match the height of the HTML element */
+}
+.App {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: -1;
+  text-align: center;
+  /* background-image: url("../../resources/images/wallet.jpg"); */
+  box-shadow: inset 0 0 0 1000px rgba(10, 121, 173, 0.8);
+  background-repeat: no-repeat;
+  color: white;
+}
+
+.logo {
+  animation: logo-spin infinite 20s linear;
+  height: 60px;
+}
+
+.header {
+  text-align: left;
+  background-color: #fff;
+  height: 60px;
+  padding: 5px;
+}
+
+.title {
+  display: inline-block;
+  position: relative;
+  top: -20px;
+  color: rgb(110, 210, 255);
+  font-size: 1.5em;
+}
+
+.description {
+  text-shadow: 1px 0px #000;
+
+  position: absolute;
+  top: 35%;
+  width: 50%;
+  font-weight: bold;
+  font-size: large;
+  font-family: Helvetica;
+}
+
+.signUp {
+  height: 0%;
+}
+
+.intro {
+  padding: 10%;
+}
+
+.footer {
+  position: absolute;
+  text-align: left;
+  bottom: 0px;
+  height: 20px;
+  padding: 10px;
+  text-shadow: 1px 0px #000;
+}
+
+.footer a {
+  padding: 10px;
+  color: rgb(77, 107, 183);
+  text-decoration: none;
+  text-shadow: none;
+}
+
+.footer a:hover {
+  color: white;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
