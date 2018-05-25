@@ -1,7 +1,8 @@
 import React from "react";
 import "./SignUp.css";
-import logo from "../../resources/images/logo.svg";
+import logo from "../../../resources/images/logo.svg";
 import CreateAccount from "../CreateAccount";
+import LogIn from "../LogIn";
 
 class SignUp extends React.Component {
   render() {
@@ -12,7 +13,7 @@ class SignUp extends React.Component {
           <h1 className="title">Wallet app </h1>
         </header>
         <div className="description">
-          <div> {this.props.value}</div>
+          <div> {this.props.users}</div>
 
           <h2 className="headline">
             Make instant transactions to anyone in the world.
@@ -21,9 +22,10 @@ class SignUp extends React.Component {
           <p className="intro">
             [coin_name] was created from scratch, on top of my own blockchain.
           </p>
-          <p>There are already {this.props.users} users. Join the community.</p>
+          <p>{this.props.users} Join the community.</p>
         </div>
-        <CreateAccount className="signUp" />
+        {/*<CreateAccount className="signUp" />*/}
+        <LogIn className="signUp" />
         <footer className="footer">
           Author:{" "}
           <a href="https://github.com/adrien-supizet/">Adrien Supizet</a> Check

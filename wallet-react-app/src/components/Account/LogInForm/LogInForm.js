@@ -1,23 +1,25 @@
-import "./SignUpForm.css";
+import "./LogInForm.css";
 import React from "react";
-
-class SignUpForm extends React.Component {
+import firebase from "../../../firebase.js";
+const auth = firebase.auth();
+/*auth.createUserWithEmailAndPassword(email.pass);
+auth.signInWithEmailAndPassword(email.pass);
+auth.onAuthStateChanged(firebaseUser => {});
+auth.signOut();*/
+class LogInForm extends React.Component {
   render() {
     return (
-      <div className="sign-up-form">
+      <div className="log-in-form">
         <form>
           <label>
             Email: <input id="emailAddress" type="email" required />
-          </label>
-          <label>
-            Account name: <input type="text" name="name" required />
           </label>
           <label>
             Password:{" "}
             <input
               id="userPassword"
               type="password"
-              autocomplete="current-password"
+              autoComplete="current-password"
               required
             />
           </label>
@@ -28,4 +30,4 @@ class SignUpForm extends React.Component {
   }
 }
 
-export default SignUpForm;
+export default LogInForm;

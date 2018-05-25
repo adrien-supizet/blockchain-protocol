@@ -1,0 +1,28 @@
+.LogIn {
+  float: right;
+  width: 30%;
+  margin: 5%;
+  clear: both;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  box-shadow: 0px 2px 0px 2px rgba(0, 0, 0, 0.25);
+}
+
+.LogIn-header {
+  background-color: rgb(77, 107, 183);
+  padding: 10px;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.LogIn-footer {
+  position: relative;
+  color: black;
+  font-weight: lighter;
+  top: 75%;
+}
+
+.LogIn a {
+  text-decoration: none;
+  font-weight: normal;
+  color: black;
+}
