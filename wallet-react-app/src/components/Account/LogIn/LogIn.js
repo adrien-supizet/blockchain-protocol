@@ -12,7 +12,7 @@ class LogIn extends PureComponent {
     return (
       <div className="LogIn">
         <header className="LogIn-header">
-          Create an account to send and receive some Coins.
+          Log into your account to send and receive Coins.
         </header>
         <LogInForm />
         <footer className="LogIn-footer">
@@ -22,9 +22,5 @@ class LogIn extends PureComponent {
     );
   }
 }
-
-LogIn.propTypes = {};
-
-LogIn.defaultProps = {};
 
 export default LogIn;

@@ -1,11 +1,11 @@
 import "./LogInForm.css";
 import React from "react";
-import firebase from "../../../firebase.js";
-const auth = firebase.auth();
+//import firebase from "../../../firebase.js";
 /*auth.createUserWithEmailAndPassword(email.pass);
 auth.signInWithEmailAndPassword(email.pass);
 auth.onAuthStateChanged(firebaseUser => {});
 auth.signOut();*/
+
 class LogInForm extends React.Component {
   render() {
     return (

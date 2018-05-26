@@ -13,8 +13,6 @@ class SignUp extends React.Component {
           <h1 className="title">Wallet app </h1>
         </header>
         <div className="description">
-          <div> {this.props.users}</div>
-
           <h2 className="headline">
             Make instant transactions to anyone in the world.
           </h2>
@@ -24,7 +22,7 @@ class SignUp extends React.Component {
           </p>
           <p>{this.props.users} Join the community.</p>
         </div>
-        {/*<CreateAccount className="signUp" />*/}
+        {<CreateAccount className="signUp" />}
         <LogIn className="signUp" />
         <footer className="footer">
           Author:{" "}

@@ -1,6 +1,7 @@
 import "./SignUpForm.css";
 import React from "react";
-
+import firebase from "../../../firebase.js";
+const auth = firebase.auth();
 class SignUpForm extends React.Component {
   render() {
     return (
@@ -17,7 +18,7 @@ class SignUpForm extends React.Component {
             <input
               id="userPassword"
               type="password"
-              autocomplete="current-password"
+              autoComplete="current-password"
               required
             />
           </label>
@@ -26,6 +27,27 @@ class SignUpForm extends React.Component {
       </div>
     );
   }
+  handlerClick() {
+    auth
+      .createUserWithEmailAndPassword("adri014@hotmail.fr", "test9294")
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == "auth/weak-password") {
+          alert("The password is too weak.");
+        } else if (errorCode == "auth/invalid-email") {
+          alert("The email is not valid.");
+        } else if (errorCode == "auth/email-already-in-use") {
+          alert(
+            "This email is already associated to an account. Reset the password HERE"
+          ); //TODO
+        } else if (errorCode == "auth/weak-password") {
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+      });
+  }
 }
-
 export default SignUpForm;

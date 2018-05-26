@@ -6,7 +6,7 @@ const firebase = require("firebase/app");
 require("firebase/<PACKAGE>");*/
 const firebase = require("firebase");
 const config = {
-  apiKey: "<AIzaSyBszhz3hM6tvzlPVw17J1g4NILJg9FLZsk>",
+  apiKey: "AIzaSyBszhz3hM6tvzlPVw17J1g4NILJg9FLZsk",
   authDomain: "blockchain-354c8.firebaseapp.com",
   databaseURL: "https://blockchain-354c8.firebaseio.com",
   projectId: "blockchain-354c8",
@@ -14,4 +14,7 @@ const config = {
   messagingSenderId: "831335941029"
 };
 firebase.initializeApp(config);
+firebase.auth().onAuthStateChanged(firebaseUser => {
+  console.log(JSON.stringify(firebaseUser) + " is now connected.");
+});
 export default firebase;

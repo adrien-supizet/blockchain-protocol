@@ -23,8 +23,4 @@ class CreateAccount extends PureComponent {
   }
 }
 
-CreateAccount.propTypes = {};
-
-CreateAccount.defaultProps = {};
-
 export default CreateAccount;
