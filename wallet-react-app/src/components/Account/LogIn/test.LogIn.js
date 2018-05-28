@@ -11,7 +11,7 @@ describe("LogInForm", () => {
     component = shallow(<LogInForm {...props} />);
   });
 
-  it("should", () => {
+  it("should create component", () => {
     expect(component).toMatchSnapshot();
   });
 });

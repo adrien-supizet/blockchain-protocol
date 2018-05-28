@@ -1,17 +1,17 @@
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from "react";
+import { shallow } from "enzyme";
 
-import CreateAccount from './CreateAccount'
+import CreateAccount from "./CreateAccount";
 
-describe('CreateAccount', () => {
-  let component, props
+describe("CreateAccount", () => {
+  let component, props;
 
   beforeEach(() => {
-    props = {}
-    component = shallow(<CreateAccount {...props} />)
-  })
+    props = {};
+    component = shallow(<CreateAccount {...props} />);
+  });
 
-  it('should', () => {
-    expect(component).toMatchSnapshot()
-  })
-})
+  it("should create component", () => {
+    expect(component).toMatchSnapshot();
+  });
+});

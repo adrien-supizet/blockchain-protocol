@@ -16,7 +16,7 @@ class LogIn extends PureComponent {
         </header>
         <LogInForm />
         <footer className="LogIn-footer">
-          Don&apos;t have an account?<a href=""> Sign up here</a>.
+          Don&apos;t have an account?<a href="/"> Sign up here</a>.
         </footer>
       </div>
     );

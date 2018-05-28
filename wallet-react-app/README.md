@@ -10,4 +10,4 @@ A user can:
 * Reset their password
 * Send Coins
 * Receive Coins
-* Become a node of the blockchain network to earn Coins
+* Become a node of the blockchain network to earn more Coins

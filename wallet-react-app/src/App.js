@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import "./App.css";
-import SignUp from "./components/Account/SignUp";
+import SignUpControl from "./components/Account/SignUpControl";
 import firebase from "./firebase.js";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      users: ""
+      users: "",
+      isLoggedIn: false
     };
   }
 
@@ -19,12 +20,12 @@ class App extends Component {
     const UsersRef = rootRef.child("users");
     UsersRef.on("value", snapshot => {
       this.setState({
-        users: "There are already " + snapshot.val() + " users."
+        users: snapshot.val()
       });
     });
   }
   render() {
-    return <SignUp users={this.state.users} />;
+    return <SignUpControl users={this.state.users} />;
   }
 }
 

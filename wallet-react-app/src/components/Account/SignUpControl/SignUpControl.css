@@ -5,7 +5,7 @@ html {
 body {
   height: 100%; /* force the BODY element to match the height of the HTML element */
 }
-.sign-up {
+.sign-up-control {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -18,6 +18,11 @@ body {
   box-shadow: inset 0 0 0 1000px rgba(10, 121, 173, 0.8);
   background-repeat: no-repeat;
   color: white;
+}
+.sign-up-control .header a {
+  float: right;
+  padding: 25px;
+  color: rgb(77, 107, 183);
 }
 
 .logo {
@@ -49,10 +54,6 @@ body {
   font-weight: bold;
   font-size: large;
   font-family: Helvetica;
-}
-
-.signUp {
-  height: 0%;
 }
 
 .intro {

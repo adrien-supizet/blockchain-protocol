@@ -16,7 +16,7 @@ class CreateAccount extends PureComponent {
         </header>
         <SignUpForm />
         <footer className="CreateAccount-footer">
-          Already have an account?<a href=""> Sign in here</a>.
+          Already have an account?<a href="/login"> Sign in here</a>.
         </footer>
       </div>
     );
