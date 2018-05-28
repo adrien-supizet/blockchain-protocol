@@ -1,5 +1,6 @@
 import "./SignUpForm.css";
 import React from "react";
+import { Redirect } from "react-router";
 import firebase from "../../../firebase.js";
 const auth = firebase.auth();
 class SignUpForm extends React.Component {
@@ -28,10 +29,14 @@ class SignUpForm extends React.Component {
       isEnabled: submit
     });
   }
+  submitForm(e) {
+    e.preventDefault();
+    this.props.history.push("/a");
+  }
   render() {
     return (
       <div className="sign-up-form">
-        <form>
+        <form onSubmit={this.submitForm.bind(this)}>
           <label>
             Name:{" "}
             <input
@@ -61,7 +66,7 @@ class SignUpForm extends React.Component {
             />
           </label>
           <input
-            type=""
+            type="Submit"
             value="Submit"
             disabled={!this.state.isEnabled}
             onClick={this.handleClick}
@@ -71,7 +76,6 @@ class SignUpForm extends React.Component {
     );
   }
   handleClick() {
-    alert(this.state.email);
     auth
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .catch(function(error) {

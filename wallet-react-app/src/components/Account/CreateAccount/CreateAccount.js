@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styles from "./CreateAccount.css";
 import SignUpForm from "../SignUpForm";
@@ -16,7 +17,7 @@ class CreateAccount extends PureComponent {
         </header>
         <SignUpForm />
         <footer className="CreateAccount-footer">
-          Already have an account?<a href="/login"> Sign in here</a>.
+          Already have an account?<Link to="/login"> Sign in here</Link>.
         </footer>
       </div>
     );

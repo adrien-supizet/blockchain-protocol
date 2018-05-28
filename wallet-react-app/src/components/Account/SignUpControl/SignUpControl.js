@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import "./SignUpControl.css";
 import logo from "../../../resources/images/logo.svg";
 import CreateAccount from "../CreateAccount";
@@ -27,12 +27,12 @@ class SignUpControl extends React.Component {
             {this.displayUsers()}
           </div>
         }
-        <Router>
+        <BrowserRouter>
           <Switch>
-            <Route exact path="/LogIn" component={LogIn} />
-            <Route default-path="/" component={CreateAccount} />
+            <Route exact path={"/login"} component={LogIn} />
+            <Route default-path={"/signUp"} component={CreateAccount} />
           </Switch>
-        </Router>
+        </BrowserRouter>
         {/*<CreateAccount className="signUp" />
       <LogIn className="signUp" /> */}
 
@@ -58,9 +58,9 @@ class SignUpControl extends React.Component {
   LogOutButton() {
     firebase.auth().signOut();
     return (
-      <a href="/login" className="sign-out">
+      <Link to="/login" className="sign-out">
         Log Out
-      </a>
+      </Link>
     );
   }
 }
