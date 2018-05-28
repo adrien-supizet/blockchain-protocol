@@ -18,3 +18,9 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
   console.log(JSON.stringify(firebaseUser) + " is now connected.");
 });
 export default firebase;
+
+//import firebase from "../../../firebase.js";
+/*auth.createUserWithEmailAndPassword(email.pass);
+auth.signInWithEmailAndPassword(email.pass);
+auth.onAuthStateChanged(firebaseUser => {});
+auth.signOut();*/

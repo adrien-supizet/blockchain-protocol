@@ -3,6 +3,7 @@ import "./SignUp.css";
 import logo from "../../../resources/images/logo.svg";
 import CreateAccount from "../CreateAccount";
 import LogIn from "../LogIn";
+import firebase from "../../../firebase.js";
 
 class SignUp extends React.Component {
   render() {
@@ -11,7 +12,14 @@ class SignUp extends React.Component {
         <header className="header">
           <img src={logo} className="logo" alt="logo" />
           <h1 className="title">Wallet app </h1>
+          <button
+            onClick={() => firebase.auth().signOut()}
+            className="sign-out"
+          >
+            Log Out
+          </button>
         </header>
+        {/*
         <div className="description">
           <h2 className="headline">
             Make instant transactions to anyone in the world.
@@ -21,7 +29,7 @@ class SignUp extends React.Component {
             [coin_name] was created from scratch, on top of my own blockchain.
           </p>
           <p>{this.props.users} Join the community.</p>
-        </div>
+        </div>*/}
         {<CreateAccount className="signUp" />}
         <LogIn className="signUp" />
         <footer className="footer">

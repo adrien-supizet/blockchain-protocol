@@ -3,51 +3,93 @@ import React from "react";
 import firebase from "../../../firebase.js";
 const auth = firebase.auth();
 class SignUpForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+      isEnabled: false
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleChange(event) {
+    const submit =
+      this.state.email.length > 1 &&
+      this.state.password.length > 1 &&
+      this.state.name.length > 1
+        ? true
+        : false;
+    console.log(submit);
+    this.setState({
+      [event.target.name]: event.target.value,
+      isEnabled: submit
+    });
+  }
   render() {
     return (
       <div className="sign-up-form">
         <form>
           <label>
-            Name: <input type="text" name="name" required />
+            Name:{" "}
+            <input
+              type="text"
+              name="name"
+              onChange={this.handleChange}
+              required
+            />
           </label>
           <label>
-            Email: <input id="emailAddress" type="email" required />
+            Email:{" "}
+            <input
+              name="email"
+              type="email"
+              onChange={this.handleChange}
+              required
+            />
           </label>
           <label>
             Password:{" "}
             <input
-              id="userPassword"
+              name="password"
               type="password"
               autoComplete="current-password"
+              onChange={this.handleChange}
               required
             />
           </label>
-          <input type="submit" value="Submit" />
+          <input
+            type=""
+            value="Submit"
+            disabled={!this.state.isEnabled}
+            onClick={this.handleClick}
+          />
         </form>
       </div>
     );
   }
-  handlerClick() {
+  handleClick() {
+    alert(this.state.email);
     auth
-      .createUserWithEmailAndPassword("adri014@hotmail.fr", "test9294")
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        if (errorCode == "auth/weak-password") {
+        if (errorCode === "auth/weak-password") {
           alert("The password is too weak.");
-        } else if (errorCode == "auth/invalid-email") {
+        } else if (errorCode === "auth/invalid-email") {
           alert("The email is not valid.");
-        } else if (errorCode == "auth/email-already-in-use") {
+        } else if (errorCode === "auth/email-already-in-use") {
           alert(
             "This email is already associated to an account. Reset the password HERE"
           ); //TODO
-        } else if (errorCode == "auth/weak-password") {
-        } else {
-          alert(errorMessage);
         }
         console.log(error);
       });
   }
 }
+
 export default SignUpForm;

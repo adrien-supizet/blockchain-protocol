@@ -24,7 +24,7 @@ class App extends Component {
     });
   }
   render() {
-    return <SignUp firebase={firebase} users={this.state.users} />;
+    return <SignUp users={this.state.users} />;
   }
 }
 
