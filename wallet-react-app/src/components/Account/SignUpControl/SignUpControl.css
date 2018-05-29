@@ -49,6 +49,7 @@ body {
   text-shadow: 1px 0px #000;
 
   position: absolute;
+  left: 5%;
   top: 35%;
   width: 50%;
   font-weight: bold;
@@ -78,6 +79,11 @@ body {
 
 .footer a:hover {
   color: white;
+}
+
+.Account {
+  top: 55%;
+  height: 50%;
 }
 
 @keyframes logo-spin {

@@ -23,6 +23,11 @@ class App extends Component {
     };
   }
 
+  componentWillUpdate() {
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      console.log(JSON.stringify(firebaseUser) + " is now connected.");
+    });
+  }
   componentDidMount() {
     const rootRef = firebase
       .database()

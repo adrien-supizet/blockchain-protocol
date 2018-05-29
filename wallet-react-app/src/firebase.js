@@ -14,9 +14,7 @@ const config = {
   messagingSenderId: "831335941029"
 };
 firebase.initializeApp(config);
-firebase.auth().onAuthStateChanged(firebaseUser => {
-  console.log(JSON.stringify(firebaseUser) + " is now connected.");
-});
+
 export default firebase;
 
 //import firebase from "../../../firebase.js";

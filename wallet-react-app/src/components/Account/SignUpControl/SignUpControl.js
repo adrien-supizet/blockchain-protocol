@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import { Redirect } from "react-router";
 import "./SignUpControl.css";
 import logo from "../../../resources/images/logo.svg";
 import CreateAccount from "../CreateAccount";
@@ -13,17 +14,16 @@ class SignUpControl extends React.Component {
         <header className="header">
           <img src={logo} className="logo" alt="logo" />
           <h1 className="title">Wallet app </h1>
-          {this.LogOutButton()}
         </header>
         {
           <div className="description">
             <h2 className="headline">
               Make instant transactions to anyone in the world.
             </h2>
-            <h2> Send and receive [coin_name] Coin using this app.</h2>
+            {/*<h2> Send and receive [coin_name] Coin using this app.</h2>
             <p className="intro">
               [coin_name] was created from scratch, on top of my own blockchain.
-            </p>
+            </p>*/}
             {this.displayUsers()}
           </div>
         }
@@ -54,14 +54,6 @@ class SignUpControl extends React.Component {
         <p> There are already {this.props.users} users. Join the community.</p>
       );
     }
-  }
-  LogOutButton() {
-    firebase.auth().signOut();
-    return (
-      <Link to="/login" className="sign-out">
-        Log Out
-      </Link>
-    );
   }
 }
 

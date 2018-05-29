@@ -1,9 +1,16 @@
-.sign-up-form {
+.account-form {
+  position: relative;
+  top: 10%;
   text-align: center;
   color: black;
 }
 
 label {
+  font-size: 1.2em;
   padding: 10px;
   display: block;
+}
+
+input {
+  border-radius: 1px;
 }

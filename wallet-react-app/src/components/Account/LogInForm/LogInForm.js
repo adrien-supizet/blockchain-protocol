@@ -1,4 +1,4 @@
-import "./LogInForm.css";
+import "../SignUpForm/SignUpForm.css";
 import React from "react";
 import firebase from "../../../firebase.js";
 const auth = firebase.auth();
@@ -30,7 +30,7 @@ class LogInForm extends React.Component {
 
   render() {
     return (
-      <div className="log-in-form">
+      <div className="account-form">
         <form>
           <label>
             Email:{" "}

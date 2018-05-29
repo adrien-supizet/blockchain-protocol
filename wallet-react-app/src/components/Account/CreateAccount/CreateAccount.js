@@ -11,12 +11,12 @@ class CreateAccount extends PureComponent {
 
   render() {
     return (
-      <div className="CreateAccount">
-        <header className="CreateAccount-header">
+      <div className="Account">
+        <header className="Account-header">
           Create an account to send and receive some Coins.
         </header>
-        <SignUpForm />
-        <footer className="CreateAccount-footer">
+        <SignUpForm className="Account-form" />
+        <footer className="Account-footer">
           Already have an account?<Link to="/login"> Sign in here</Link>.
         </footer>
       </div>
