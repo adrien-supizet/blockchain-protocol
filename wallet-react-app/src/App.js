@@ -23,11 +23,6 @@ class App extends Component {
     };
   }
 
-  componentWillUpdate() {
-    firebase.auth().onAuthStateChanged(firebaseUser => {
-      console.log(JSON.stringify(firebaseUser) + " is now connected.");
-    });
-  }
   componentDidMount() {
     const rootRef = firebase
       .database()
@@ -38,6 +33,17 @@ class App extends Component {
       this.setState({
         users: snapshot.val()
       });
+    });
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+      if (firebaseUser) {
+        this.setState({
+          isLoggedIn: true
+        });
+      } else
+        this.setState({
+          isLoggedIn: false
+        });
+      console.log(JSON.stringify(firebaseUser) + " is now connected.");
     });
   }
   render() {
