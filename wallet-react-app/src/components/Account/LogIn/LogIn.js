@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import styles from "../CreateAccount/CreateAccount.css";
+import "../CreateAccount/CreateAccount.css";
 import LogInForm from "../LogInForm";
 
 class LogIn extends PureComponent {
@@ -13,7 +12,9 @@ class LogIn extends PureComponent {
         </header>
         <LogInForm className="Account-form" />
         <footer className="Account-footer">
-          Don&apos;t have an account?<Link to="/signup"> Sign up here</Link>.
+          <p>
+            Don&apos;t have an account?<Link to="/signup"> Sign up here</Link>.
+          </p>
         </footer>
       </div>
     );

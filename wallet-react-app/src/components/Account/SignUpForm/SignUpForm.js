@@ -1,6 +1,5 @@
 import "./SignUpForm.css";
 import React from "react";
-import { Redirect } from "react-router";
 import { withRouter } from "react-router-dom";
 import firebase from "../../../firebase.js";
 const auth = firebase.auth();
@@ -18,16 +17,15 @@ class SignUpForm extends React.Component {
   }
 
   handleChange(event) {
-    const submit =
+    const nonEmpty =
       this.state.email.length > 1 &&
       this.state.password.length > 1 &&
       this.state.name.length > 1
         ? true
         : false;
-    console.log(submit);
     this.setState({
       [event.target.name]: event.target.value,
-      isEnabled: submit
+      isEnabled: nonEmpty
     });
   }
   submitForm(e) {
@@ -94,7 +92,7 @@ class SignUpForm extends React.Component {
             "This email is already associated to an account. Reset the password HERE"
           ); //TODO
         }
-        console.log(error);
+        console.log(errorCode, errorMessage);
       });
   }
 }

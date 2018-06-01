@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./WalletControl.css";
-import logo from "../../../resources/images/logo.svg";
+//import logo from "../../../resources/images/logo.svg";
 import firebase from "../../../firebase.js";
 
 class WalletControl extends React.Component {

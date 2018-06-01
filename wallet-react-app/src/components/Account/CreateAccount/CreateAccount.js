@@ -1,14 +1,9 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
-import styles from "./CreateAccount.css";
+import "./CreateAccount.css";
 import SignUpForm from "../SignUpForm";
 
 class CreateAccount extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="Account">

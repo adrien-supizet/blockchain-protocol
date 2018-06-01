@@ -1,11 +1,9 @@
 import React from "react";
-import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
-import { Redirect } from "react-router";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./SignUpControl.css";
 import logo from "../../../resources/images/logo.svg";
 import CreateAccount from "../CreateAccount";
 import LogIn from "../LogIn";
-import firebase from "../../../firebase.js";
 
 class SignUpControl extends React.Component {
   render() {
@@ -27,14 +25,14 @@ class SignUpControl extends React.Component {
             {this.displayUsers()}
           </div>
         }
-        <BrowserRouter>
-          <Switch>
-            <Route exact path={"/login"} component={LogIn} />
-            <Route default-path={"/signUp"} component={CreateAccount} />
-          </Switch>
-        </BrowserRouter>
-        {/*<CreateAccount className="signUp" />
-      <LogIn className="signUp" /> */}
+        <div className="signUp">
+          <BrowserRouter>
+            <Switch>
+              <Route exact path={"/login"} component={LogIn} />
+              <Route default-path={"/signUp"} component={CreateAccount} />
+            </Switch>
+          </BrowserRouter>
+        </div>
 
         <footer className="footer">
           Author:{" "}
