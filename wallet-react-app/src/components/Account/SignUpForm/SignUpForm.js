@@ -79,8 +79,7 @@ class SignUpForm extends React.Component {
   handleClick() {
     auth
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .catch(function(error) {
-        // Handle Errors here.
+      .catch(error => {
         var errorCode = error.code;
         var errorMessage = error.message;
         if (errorCode === "auth/weak-password") {
@@ -93,6 +92,20 @@ class SignUpForm extends React.Component {
           ); //TODO
         }
         console.log(errorCode, errorMessage);
+      })
+      .then(user => {
+        const rootRef = firebase
+          .database()
+          .ref()
+          .child("react");
+        const UsersRef = rootRef.child("users");
+        var newValue = 0;
+        UsersRef.on("value", snapshot => {
+          newValue = snapshot.val() + 1;
+        });
+        UsersRef.set(newValue);
+        const accountsRef = rootRef.child("accounts").child(user.user.uid);
+        accountsRef.set({ email: this.state.email, name: this.state.name });
       });
   }
 }

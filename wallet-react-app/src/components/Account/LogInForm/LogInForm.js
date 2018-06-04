@@ -52,7 +52,7 @@ class LogInForm extends React.Component {
             />
           </label>
           <input
-            type=""
+            type="submit"
             value="Submit"
             disabled={!this.state.isEnabled}
             onClick={this.handleClick}
