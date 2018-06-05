@@ -68,9 +68,9 @@ body {
   color: white;
 }
 
-.Account {
+.signUp {
   top: 55%;
-  height: 50%;
+  height: 300px;
 }
 
 @keyframes logo-spin {

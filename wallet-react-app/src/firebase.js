@@ -16,9 +16,3 @@ const config = {
 firebase.initializeApp(config);
 
 export default firebase;
-
-//import firebase from "../../../firebase.js";
-/*auth.createUserWithEmailAndPassword(email.pass);
-auth.signInWithEmailAndPassword(email.pass);
-auth.onAuthStateChanged(firebaseUser => {});
-auth.signOut();*/

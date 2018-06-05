@@ -16,16 +16,20 @@ class LogInForm extends React.Component {
   }
 
   handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  componentDidUpdate() {
     const submit =
-      this.state.email.length > 1 && this.state.password.length > 1
+      this.state.email.length > 0 && this.state.password.length > 0
         ? true
         : false;
-    console.log(submit);
-    this.setState({
-      [event.target.name]: event.target.value,
-      isEnabled: submit
-    });
-    console.log(this.state);
+    if (submit != this.state.isEnabled)
+      this.setState({
+        isEnabled: submit
+      });
   }
 
   render() {

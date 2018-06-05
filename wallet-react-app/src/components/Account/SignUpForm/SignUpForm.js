@@ -17,16 +17,21 @@ class SignUpForm extends React.Component {
   }
 
   handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+  componentDidUpdate() {
     const nonEmpty =
-      this.state.email.length > 1 &&
-      this.state.password.length > 1 &&
-      this.state.name.length > 1
+      this.state.email.length > 0 &&
+      this.state.password.length > 0 &&
+      this.state.name.length > 0
         ? true
         : false;
-    this.setState({
-      [event.target.name]: event.target.value,
-      isEnabled: nonEmpty
-    });
+    if (nonEmpty != this.state.isEnabled)
+      this.setState({
+        isEnabled: nonEmpty
+      });
   }
   submitForm(e) {
     e.preventDefault();
