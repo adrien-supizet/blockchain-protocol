@@ -1,0 +1,18 @@
+.transaction-form label {
+  display: inline;
+}
+
+input {
+}
+
+.toLabel {
+  width: 100px;
+}
+
+.amountLabel {
+  width: 80px;
+}
+
+.submit {
+  margin-left: 20px;
+}

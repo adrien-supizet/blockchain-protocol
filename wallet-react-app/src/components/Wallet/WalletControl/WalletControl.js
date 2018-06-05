@@ -1,17 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./WalletControl.css";
-//import logo from "../../../resources/images/logo.svg";
 import firebase from "../../../firebase.js";
+import AddressList from "../AddressList";
+import TransactionForm from "../TransactionForm";
 
 class WalletControl extends React.Component {
   render() {
     return (
       <div className="wallet-control">
         <header className="wallet-header">
-          <h1>Title</h1>
+          <h1>Wallet app</h1>
           {this.LogOutButton()}
         </header>
+        <TransactionForm className="transaction" />
+        <AddressList className="address-list" />
       </div>
     );
   }
